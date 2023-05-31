@@ -2,11 +2,21 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 const App = () => {
-  const type = "number";
-  const minVal = 5;
-  const maxVal = 10;
+  const obj = { color: "red" };
 
-  return <input type="number" min={minVal} max={maxVal} />;
+  return (
+    <div>
+      <input
+        type="number"
+        style={{
+          color: "red",
+          backgroundColor: "yellow",
+          border: "3px solid green",
+          fontSize: "25px",
+        }}
+      />
+    </div>
+  );
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
