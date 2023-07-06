@@ -1,23 +1,22 @@
-import { useState } from "react";
 import "./AnimalShow.css";
-import bird from "./svg/bird.svg";
-import cat from "./svg/cat.svg";
-import cow from "./svg/cow.svg";
-import dog from "./svg/dog.svg";
-import gator from "./svg/gator.svg";
-import heart from "./svg/heart.svg";
-import horse from "./svg/horse.svg";
+import { useState } from "react";
+import Bird from "./svg/bird.svg";
+import Cat from "./svg/cat.svg";
+import Cow from "./svg/cow.svg";
+import Dog from "./svg/dog.svg";
+import Gator from "./svg/gator.svg";
+import Heart from "./svg/heart.svg";
+import Horse from "./svg/horse.svg";
 
 const svgMap = {
-  bird: bird,
-  cat: cat,
-  cow: cow,
-  dog: dog,
-  gator: gator,
-  horse: horse,
+  bird: Bird,
+  cat: Cat,
+  cow: Cow,
+  dog: Dog,
+  gator: Gator,
+  horse: Horse,
 };
-
-function AnimalShow({ type }) {
+function AnimalShow(props) {
   const [clicks, setClicks] = useState(0);
 
   const handleClick = () => {
@@ -26,11 +25,11 @@ function AnimalShow({ type }) {
 
   return (
     <div className="animal-show" onClick={handleClick}>
-      <img className="animal" alt="animal" src={svgMap[type]} />
+      <img className="animal" src={svgMap[props.type]} alt="Animal" />
       <img
         className="heart"
-        alt="heart"
-        src={heart}
+        src={Heart}
+        alt="Heart"
         style={{ width: 10 + 10 * clicks + "px" }}
       />
     </div>
