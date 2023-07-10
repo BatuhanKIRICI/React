@@ -1,14 +1,16 @@
 import React from "react";
 import "./style.css";
-import List from "./List";
-import * as head from "./Heading";
+import * as calculate from "./Calculate";
 
 function App() {
   return (
     <div>
-      <head.Heading />
-      <List />
-      <p>{head.hour}</p>
+      <ul>
+        <li>{calculate.Add(10, 2)}</li>
+        <li>{calculate.Subtract(10, 2)}</li>
+        <li>{calculate.Multiply(10, 2)}</li>
+        <li>{calculate.Divide(10, 2)}</li>
+      </ul>
     </div>
   );
 }
