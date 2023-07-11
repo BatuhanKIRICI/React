@@ -1,3 +1,54 @@
-h1 {
-  color: blue;
+body {
+  margin: 0;
+  background-color: azure;
+}
+
+.header {
+  background-color: rgb(226, 161, 11);
+  block-size: 70px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.header h1 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: whitesmoke;
+  padding: 1rem;
+  padding-left: 1.7rem;
+  margin: 0;
+  border: 0;
+  box-shadow: 0 0 10px 0 rgb(161, 161, 161);
+}
+
+.note {
+  box-sizing: border-box;
+  background-color: antiquewhite;
+  padding: 15px;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.note h3 {
+  margin: 0.33rem;
+}
+
+.note p {
+  margin: 0.33rem;
+  margin-bottom: auto;
+}
+
+.footer {
+  color: rgb(152, 151, 149);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 175vh;
 }
