@@ -1,21 +1,25 @@
 import React from "react";
 import "./style.css";
-import { Heading } from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
+import Card from "./Card";
+import contacts from "./Contact";
 
 function App() {
   return (
     <div>
-      <div className="header">
-        <Heading />
-      </div>
-      <div className="note">
-        <Note />
-      </div>
-      <div className="footer">
-        <Footer />
-      </div>
+      <h1 className="heading">My Contacts</h1>
+
+      <Card
+        name={contacts[0].name}
+        img={contacts[0].imgURL}
+        tel={contacts[0].phone}
+        email={contacts[0].email}
+      />
+      <Card
+        name={contacts[1].name}
+        img={contacts[1].imgURL}
+        tel={contacts[1].phone}
+        email={contacts[1].email}
+      />
     </div>
   );
 }
