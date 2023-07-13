@@ -1,25 +1,28 @@
 import React from "react";
 import "./style.css";
-import Card from "./Card";
-import contacts from "./Contact";
+import Divs from "./Divs";
+import emojipedia from "./Emojipedia";
+
+const createDiv = (emojiTerm) => {
+  return (
+    <div>
+      <Divs
+        key={emojiTerm.id}
+        emoji={emojiTerm.emoji}
+        name={emojiTerm.name}
+        description={emojiTerm.meaning}
+      />
+    </div>
+  );
+};
 
 function App() {
   return (
     <div>
-      <h1 className="heading">My Contacts</h1>
-
-      <Card
-        name={contacts[0].name}
-        img={contacts[0].imgURL}
-        tel={contacts[0].phone}
-        email={contacts[0].email}
-      />
-      <Card
-        name={contacts[1].name}
-        img={contacts[1].imgURL}
-        tel={contacts[1].phone}
-        email={contacts[1].email}
-      />
+      <h1>
+        <span>emojipedia</span>
+      </h1>
+      <dl className="dictionary">{emojipedia.map(createDiv)}</dl>
     </div>
   );
 }
