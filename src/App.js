@@ -1,51 +1,53 @@
-import "bulma/css/bulma.css";
-import Course from "./Course";
-import Picture from "./images/501757-The-Dark-Knight-Heath-Ledger-movies-quote-anime.jpg";
-import Image from "./images/Black-Joker-Wallpapers-HD.jpg";
-import Photo from "./images/joker.jpg";
-import Logo from "./images/joker2.jpg";
+import { useState } from "react";
+import Images from "./Images";
 
 const App = () => {
+  function getRandomPicture() {
+    const pictureArray = ["first", "second", "third", "fourth"];
+    return pictureArray[Math.floor(Math.random() * pictureArray.length)];
+  }
+  const [picture, setPicture] = useState([]);
+
+  function handleClick() {
+    setPicture([...picture, getRandomPicture()]);
+  }
+
+  const pictureList = picture.map((pic, index) => {
+    return <Images key={index} pic={pic} />;
+  });
+
   return (
-    <div>
-      <section className="hero is-link">
-        <div className="hero-body">
-          <p className="title">The Joker</p>
-        </div>
-      </section>
-      <div className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column">
-              <Course
-                title="Picture"
-                image={Picture}
-                description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia a, recusandae quo explicabo dolores aspernatur magnam beatae assumenda nihil quos saepe amet voluptate maxime voluptatem laboriosam cupiditate dignissimos quam libero."
-              />
-            </div>
-            <div className="column">
-              <Course
-                title="Image"
-                image={Image}
-                description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia a, recusandae quo explicabo dolores aspernatur magnam beatae assumenda nihil quos saepe amet voluptate maxime voluptatem laboriosam cupiditate dignissimos quam libero."
-              />
-            </div>
-            <div className="column">
-              <Course
-                title="Photo"
-                image={Photo}
-                description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia a, recusandae quo explicabo dolores aspernatur magnam beatae assumenda nihil quos saepe amet voluptate maxime voluptatem laboriosam cupiditate dignissimos quam libero."
-              />
-            </div>
-            <div className="column">
-              <Course
-                title="Logo"
-                image={Logo}
-                description="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia a, recusandae quo explicabo dolores aspernatur magnam beatae assumenda nihil quos saepe amet voluptate maxime voluptatem laboriosam cupiditate dignissimos quam libero."
-              />
-            </div>
-          </div>
-        </div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <button
+        onClick={handleClick}
+        style={{
+          //
+          width: "30%",
+          height: "75px",
+          fontSize: "35px",
+          backgroundColor: "blue",
+          color: "white",
+          border: "1px solid blue",
+          borderRadius: "15px",
+          marginBottom: "15px",
+        }}
+      >
+        Add Picture
+      </button>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        {pictureList}
       </div>
     </div>
   );
