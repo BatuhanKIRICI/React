@@ -1,37 +1,53 @@
-import axios from "axios";
-import SearchHeader from "./SearchHeader";
 import { useState } from "react";
-import ImageList from "./ImageList";
+import TaskCreate from "./components/TaskCreate";
+import TaskList from "./components/TaskList";
+function App() {
+  const [tasks, setTasks] = useState([]);
 
-const App = () => {
-  const [images, setImages] = useState([]);
-
-  const searchImages = async (term) => {
-    const response = await axios.get(
-      "https://api.unsplash.com//search/photos",
+  function handleAdd(title, taskDesc) {
+    const createdTasks = [
+      ...tasks,
       {
-        headers: {
-          Authorization: "Client-ID ...",
-        },
-        params: {
-          query: term,
-        },
-      }
-    );
-    return response.data.results;
-  };
+        id: Math.round(Math.random() * 99999),
+        title,
+        taskDesc,
+      },
+    ];
+    setTasks(createdTasks);
+  }
 
-  const handleSubmit = async (term) => {
-    const result = await searchImages(term);
-    setImages(result);
-  };
+  function handleDeleteId(id) {
+    const afterDelete = tasks.filter((task) => {
+      return task.id !== id;
+    });
+    setTasks(afterDelete);
+  }
+
+  function handleEditTaskById(updatedTitle, updatedTaskDesc, taskId) {
+    const afterUpdate = tasks.map((task) => {
+      if (task.id === taskId) {
+        return {
+          id: taskId,
+          title: updatedTitle,
+          taskDesc: updatedTaskDesc,
+        };
+      }
+      return task;
+    });
+    setTasks(afterUpdate);
+  }
 
   return (
-    <div>
-      <SearchHeader search={handleSubmit} />
-      <ImageList picture={images} />
+    <div className="App">
+      <TaskCreate onAdd={handleAdd} />
+      <h1>Tasks</h1>
+      <TaskList
+        tasks={tasks}
+        onDelete={handleDeleteId}
+        onEdit={handleEditTaskById}
+      />
     </div>
   );
-};
+}
 
 export default App;
