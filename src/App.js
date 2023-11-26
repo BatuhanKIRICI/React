@@ -1,54 +1,35 @@
+import axios from "axios";
+import SearchHeader from "./SearchHeader";
 import { useState } from "react";
-import Images from "./Images";
+import ImageList from "./ImageList";
 
 const App = () => {
-  function getRandomPicture() {
-    const pictureArray = ["first", "second", "third", "fourth"];
-    return pictureArray[Math.floor(Math.random() * pictureArray.length)];
-  }
-  const [picture, setPicture] = useState([]);
+  const [images, setImages] = useState([]);
 
-  function handleClick() {
-    setPicture([...picture, getRandomPicture()]);
-  }
+  const searchImages = async (term) => {
+    const response = await axios.get(
+      "https://api.unsplash.com//search/photos",
+      {
+        headers: {
+          Authorization: "Client-ID ...",
+        },
+        params: {
+          query: term,
+        },
+      }
+    );
+    return response.data.results;
+  };
 
-  const pictureList = picture.map((pic, index) => {
-    return <Images key={index} pic={pic} />;
-  });
+  const handleSubmit = async (term) => {
+    const result = await searchImages(term);
+    setImages(result);
+  };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <button
-        onClick={handleClick}
-        style={{
-          //
-          width: "30%",
-          height: "75px",
-          fontSize: "35px",
-          backgroundColor: "blue",
-          color: "white",
-          border: "1px solid blue",
-          borderRadius: "15px",
-          marginBottom: "15px",
-        }}
-      >
-        Add Picture
-      </button>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {pictureList}
-      </div>
+    <div>
+      <SearchHeader search={handleSubmit} />
+      <ImageList picture={images} />
     </div>
   );
 };
