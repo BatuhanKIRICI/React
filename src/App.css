@@ -2,18 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .task-create {
   width: 450px;
 }
-
 .task-update {
   width: 100%;
 }
 
-.task-create-form {
+.task-form {
   display: flex;
   flex-direction: column;
 }
@@ -23,65 +21,58 @@
 }
 
 .task-input {
-  border: 1px solid gray;
   padding: 10px;
+  border: 1px solid black;
   border-radius: 10px;
 }
 
 .task-button {
-  background: rgb(76, 143, 76);
-  padding: 10px;
+  border: 1px solid green;
   margin: 10px 0px;
-  border: 1px solid black;
-  border-radius: 10px;
+  padding: 10px;
+  background-color: green;
   color: white;
+  border-radius: 10px;
   font-size: 20px;
 }
-
 .update-button {
-  background: rgb(223, 137, 9);
+  background-color: blueviolet;
 }
-
 .task-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .task-show {
+  border: 1px solid green;
+  border-radius: 30px;
+  width: 350px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
-  border: 1px solid green;
-  border-radius: 15px;
-  width: 350px;
-  padding: 20px;
   margin: 20px;
 }
-
-.button-update {
-  padding: 5px;
-  font-size: 15px;
-  width: 75px;
-  border: none;
-  border-radius: 5px;
-  background: rgb(87, 104, 197);
-  color: white;
-  margin-right: 10px;
-}
-
-.button-delete {
-  padding: 5px;
-  font-size: 15px;
-  width: 75px;
-  border: none;
-  border-radius: 15px;
-  background: rgb(212, 66, 66);
-  color: white;
-  margin-right: 10px;
-}
-
 .task-title {
   margin-bottom: 5px;
+}
+.task-edit {
+  padding: 5px;
+  font-size: 15px;
+  width: 100px;
+  border: none;
+  border-radius: 30px;
+  background-color: blue;
+  color: white;
+  margin-right: 10px;
+}
+.task-delete {
+  padding: 5px;
+  font-size: 15px;
+  width: 60px;
+  border: none;
+  border-radius: 30px;
+  background-color: red;
+  color: white;
+  margin-right: 10px;
 }

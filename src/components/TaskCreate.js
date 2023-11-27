@@ -1,79 +1,73 @@
 import { useState } from "react";
 
-function TaskCreate({
-  onAdd,
-  titleUpdate,
-  taskDescUpdate,
-  taskUpdate,
-  taskId,
-  onUpdate,
-}) {
-  const [title, setTitle] = useState(titleUpdate ? titleUpdate : "");
-  const [taskDesc, setTaskDesc] = useState(
-    taskDescUpdate ? taskDescUpdate : ""
-  );
+function TaskCreate({ onCreate, task, taskformUpdate, onUpdate }) {
+  const [title, setTitle] = useState(task ? task.title : "");
+  const [taskDesc, setTaskDesc] = useState(task ? task.taskDesc : "");
 
-  function handleChangeTitle(e) {
-    setTitle(e.target.value);
-  }
-
-  function handleChangeTask(e) {
-    setTaskDesc(e.target.value);
-  }
-
-  function handleClick(e) {
-    e.preventDefault();
-    if (taskUpdate) {
-      onUpdate(title, taskDesc, taskId);
+  const handleChange = (event) => {
+    setTitle(event.target.value);
+  };
+  const handleTaskChange = (event) => {
+    setTaskDesc(event.target.value);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (taskformUpdate) {
+      onUpdate(task.id, title, taskDesc);
     } else {
-      onAdd(title, taskDesc);
+      onCreate(title, taskDesc);
     }
-    setTitle((p) => (p = ""));
-    setTaskDesc((p) => (p = ""));
-  }
+
+    setTitle("");
+    setTaskDesc("");
+  };
 
   return (
     <div>
-      {taskUpdate ? (
+      {" "}
+      {taskformUpdate ? (
         <div className="task-update">
-          <h3>Please add task again!</h3>
-          <form className="task-create-form">
-            <label className="task-label">Update Title</label>
+          <h3>Please edit task!</h3>
+          <form className="task-form">
+            <label className="task-label">Edit header</label>
             <input
               value={title}
-              onChange={handleChangeTitle}
+              onChange={handleChange}
               className="task-input"
             />
-            <label className="task-label">Please update task again!</label>
+            <label className="task-label">Edit task!</label>
             <textarea
               value={taskDesc}
-              onChange={handleChangeTask}
+              onChange={handleTaskChange}
               className="task-input"
-              rows={7}
+              rows={5}
             />
-            <button className="task-button update-button" onClick={handleClick}>
+            <button
+              className="task-button update-button"
+              onClick={handleSubmit}
+            >
               Edit
             </button>
           </form>
         </div>
       ) : (
         <div className="task-create">
-          <h3>Please add task!</h3>
-          <form className="task-create-form">
-            <label className="task-label">Title</label>
+          <h3>Please Add Task!</h3>
+          <form className="task-form">
+            <label className="task-label">Header</label>
             <input
               value={title}
-              onChange={handleChangeTitle}
+              onChange={handleChange}
               className="task-input"
             />
-            <label className="task-label">Enter Task</label>
+            <label className="task-label">Add Task!</label>
             <textarea
               value={taskDesc}
-              onChange={handleChangeTask}
+              onChange={handleTaskChange}
               className="task-input"
-              rows={7}
+              rows={5}
             />
-            <button className="task-button" onClick={handleClick}>
+            <button className="task-button" onClick={handleSubmit}>
               Add
             </button>
           </form>

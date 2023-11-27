@@ -1,44 +1,35 @@
 import { useState } from "react";
 import TaskCreate from "./TaskCreate";
 
-function TaskShow({ title, taskDesc, id, onDelete, onEdit }) {
-  const [update, setUpdate] = useState(false);
-
-  function handleUpdate() {
-    setUpdate(!update);
-  }
-
-  function handleDelete() {
-    onDelete(id);
-  }
-
-  function handleOnUpdate(updatedTitle, updatedTaskDesc, taskId) {
-    setUpdate(false);
-    onEdit(updatedTitle, updatedTaskDesc, taskId);
-  }
+function TaskShow({ task, onDelete, onUpdate }) {
+  const [showEdit, setShowEdit] = useState(false);
+  const handleDeleteClick = () => {
+    onDelete(task.id);
+  };
+  const handleEditClick = () => {
+    setShowEdit(!showEdit);
+  };
+  const handleSubmit = (id, updatedTitle, updatedTaskDesc) => {
+    setShowEdit(false);
+    onUpdate(id, updatedTitle, updatedTaskDesc);
+  };
 
   return (
     <div className="task-show">
-      {update ? (
-        <TaskCreate
-          titleUpdate={title}
-          taskDescUpdate={taskDesc}
-          taskUpdate={true}
-          taskId={id}
-          onUpdate={handleOnUpdate}
-        />
+      {showEdit ? (
+        <TaskCreate task={task} taskformUpdate={true} onUpdate={handleSubmit} />
       ) : (
         <div>
           <h3 className="task-title">Your Task</h3>
-          <p>{title}</p>
+          <p>{task.title}</p>
           <h3 className="task-title">To Do</h3>
-          <p>{taskDesc}</p>
+          <p>{task.taskDesc}</p>
           <div>
-            <button className="button-update" onClick={handleUpdate}>
-              Update
-            </button>
-            <button className="button-delete" onClick={handleDelete}>
+            <button className="task-delete" onClick={handleDeleteClick}>
               Delete
+            </button>
+            <button className="task-edit" onClick={handleEditClick}>
+              Update
             </button>
           </div>
         </div>

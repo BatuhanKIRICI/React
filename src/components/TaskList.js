@@ -1,16 +1,15 @@
-import TaskShow from "./TaskShow";
-function TaskList({ tasks, onDelete, onEdit }) {
+import TaskShow from './TaskShow';
+
+function TaskList({ tasks, onDelete, onUpdate }) {
   return (
     <div className="task-list">
-      {tasks.map((item, index) => {
+      {tasks.map((task, index) => {
         return (
           <TaskShow
             key={index}
-            id={item.id}
-            title={item.title}
-            taskDesc={item.taskDesc}
+            task={task}
             onDelete={onDelete}
-            onEdit={onEdit}
+            onUpdate={onUpdate}
           />
         );
       })}
