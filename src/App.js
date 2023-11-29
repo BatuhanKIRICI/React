@@ -1,42 +1,35 @@
-import React, { useEffect, useReducer } from "react";
-import Calculate from "./Calculate";
+import React, { useEffect, useState, useRef } from "react";
 
-export const NumberContext = React.createContext();
 function App() {
-  const initialValue = 0;
+  const [name, setName] = useState("");
+  // const [render, setRender] = useState(0);
 
-  const reducer = (state, action) => {
-    /* switch (action) {
-      case "increment":
-        return state + 1;
-      case "decrement":
-        return state - 1;
-      case "reset":
-        return initialValue;
-      default:
-        return state;
-    } */
-    if (action === "increment") {
-      return state + 1;
-    } else if (action === "decrement") {
-      return state - 1;
-    } else if (action === "reset") {
-      return initialValue;
-    } else {
-      return state;
-    }
+  const render = useRef(0);
+  const inputRef = useRef();
+
+  const handleFocus = () => {
+    console.log(inputRef.current);
+    inputRef.current.value = "Mike";
   };
 
-  const [count, dispatch] = useReducer(reducer, initialValue);
-
   useEffect(() => {
-    console.log("Rendered");
-  }, [count]);
+    // setRender((e) => e + 1);
+    render.current = render.current + 1;
+  }, []);
 
   return (
-    <NumberContext.Provider value={{ countObj: count, dispatchObj: dispatch }}>
-      <Calculate />
-    </NumberContext.Provider>
+    <div>
+      <div>
+        <input
+          ref={inputRef}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <p>My name is {name}</p>
+        <p>{render.current}</p>
+        <button onClick={handleFocus}>Focus</button>
+      </div>
+    </div>
   );
 }
 
