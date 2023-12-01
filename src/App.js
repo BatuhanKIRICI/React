@@ -1,13 +1,15 @@
-/* import TitleOne from "./TitleOne"; */
-/* import Counter from "./Counter"; */
-import PersonalInfo from "./PersonalInfo";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   return (
     <div>
-      {/* <TitleOne /> */}
-      {/* <Counter /> */}
-      <PersonalInfo />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
+      </Routes>
     </div>
   );
 }
