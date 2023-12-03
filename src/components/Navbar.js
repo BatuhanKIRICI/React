@@ -1,15 +1,20 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import BurgerLogo from "../assets/burgerlogo.png";
+import { Link } from "react-router-dom";
+import "../styles/navbar.css";
 
 function Navbar() {
   return (
-    <div>
-      <nav className="mainNav">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/aboutUs">About</NavLink>
-        <NavLink to="/mission">Mission</NavLink>
-        <NavLink to="/history">History</NavLink>
-      </nav>
+    <div className="navbar">
+      <div className="main">
+        <img src={BurgerLogo} alt="Burger logo" />
+        <div className="mainLink">
+          <Link to="/">Anasayfa</Link>
+          <Link to="/menu">Menü</Link>
+          <Link to="/about">Hakkımızada</Link>
+          <Link to="/contact">İletişim</Link>
+        </div>
+      </div>
     </div>
   );
 }
