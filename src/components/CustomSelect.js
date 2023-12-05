@@ -1,7 +1,7 @@
 import { useField } from "formik";
 import React from "react";
 
-function CustomInput({ label, ...props }) {
+function CustomSelect({ label, ...props }) {
   const [field, meta] = useField(props);
 
   return (
@@ -17,4 +17,4 @@ function CustomInput({ label, ...props }) {
   );
 }
 
-export default CustomInput;
+export default CustomSelect;
