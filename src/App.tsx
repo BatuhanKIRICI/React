@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Instructor from "./components/Instructor";
 import InstructorList from "./components/InstructorList";
 import Request from "./components/Request";
+import EventActions from "./components/EventActions";
 
 function App() {
   const instructor = {
@@ -32,6 +33,7 @@ function App() {
       <Instructor instructorInfo={instructor} />
       <InstructorList instructorList={instructorList} />
       <Request status="loading" />
+      <EventActions />
     </div>
   );
 }
