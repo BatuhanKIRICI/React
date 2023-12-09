@@ -1,10 +1,6 @@
 import React from "react";
+import { Data } from "./propstypes";
 
-type Data = {
-  name: string;
-  number: number;
-  isGood: boolean;
-};
 function Home(props: Data) {
   return (
     <div>
