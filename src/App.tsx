@@ -1,25 +1,8 @@
 import React from "react";
 import "./App.css";
-// import { LessonRadioExample } from "./components/LessonRadioExample";
-import { LessonSelect } from "./components/LessonSelect";
-// import { LessonTextField } from "./components/LessonTextField";
-// import { LessonTypography } from "./components/LessonTypography";
-// import { LessonButton } from "./components/LessonButton";
-// import { LessonButtonGroup } from "./components/LessonButtonGroup";
-// import { LessonRadioGroup } from "./components/LessonRadioGroup";
 
 function App() {
-  return (
-    <div className="App">
-      {/* <LessonTypography /> */}
-      {/* <LessonButton /> */}
-      {/* <LessonButtonGroup /> */}
-      {/* <LessonTextField /> */}
-      {/* <LessonRadioGroup /> */}
-      {/* <LessonRadioExample /> */}
-      <LessonSelect />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
