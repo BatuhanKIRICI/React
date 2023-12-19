@@ -1,14 +1,23 @@
 import React, { ChangeEvent, FC } from "react";
 import { useState } from "react";
+import { todoType } from "./appTypes";
 
 const App: FC = () => {
   const [task, setTask] = useState<string>("");
   const [workDay, setWorkDay] = useState<number>(0);
+  const [todoList, setTodoList] = useState<todoType[]>([]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.name === "task"
       ? setTask(e.target.value)
       : setWorkDay(+e.target.value);
+  };
+
+  const handleAdd = () => {
+    const newTask = { taskName: task, workDay: workDay };
+    setTodoList([...todoList, newTask]);
+    setTask("");
+    setWorkDay(0);
   };
 
   return (
@@ -28,7 +37,7 @@ const App: FC = () => {
           placeholder="How many days to finish?..."
           onChange={handleChange}
         />
-        <button>Add New Task</button>
+        <button onClick={handleAdd}>Add New Task</button>
       </div>
     </div>
   );
