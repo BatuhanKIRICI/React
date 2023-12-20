@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC } from "react";
 import { useState } from "react";
 import { todoType } from "./appTypes";
+import TodoItem from "./TodoItem.tsx";
 
 const App: FC = () => {
   const [task, setTask] = useState<string>("");
@@ -13,11 +14,15 @@ const App: FC = () => {
       : setWorkDay(+e.target.value);
   };
 
-  const handleAdd = () => {
+  const handleAdd = (): void => {
     const newTask = { taskName: task, workDay: workDay };
     setTodoList([...todoList, newTask]);
     setTask("");
     setWorkDay(0);
+  };
+
+  const handleDelete = (name: string): void => {
+    setTodoList(todoList.filter((task) => task.taskName !== name));
   };
 
   return (
@@ -38,6 +43,11 @@ const App: FC = () => {
           onChange={handleChange}
         />
         <button onClick={handleAdd}>Add New Task</button>
+      </div>
+      <div>
+        {todoList.map((task: todoType, index: number) => {
+          return <TodoItem key={index} task={task} deleteTask={handleDelete} />;
+        })}
       </div>
     </div>
   );
