@@ -1,46 +1,31 @@
-/* * {
+* {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  text-align: center;
-} */
+}
 
-.main {
+.navbar {
   display: flex;
-  flex-direction: column;
-  width: 30%;
-  margin: auto;
-}
-
-.mainInput {
-  padding: 10px 5px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.mainButton {
-  padding: 10px;
-  border: none;
-  border-radius: 30px;
+  justify-content: space-around;
   background-color: blue;
   color: white;
-  width: 30%;
-  margin: auto;
-}
-
-.todoCard {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  height: 75px;
   align-items: center;
 }
 
-.card {
-  width: 350px;
-  border: 1px solid black;
-  border-radius: 30px;
+.navDiv {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.itemsIcon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.itemsDiv {
+  background-color: white;
+  border-radius: 50%;
+  color: black;
+  width: 20px;
   text-align: center;
-  padding: 20px;
-  margin: 20px;
 }
