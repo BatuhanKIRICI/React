@@ -3,7 +3,7 @@ import { BsFillBasketFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 
 function Navbar() {
-  const { quantity } = useSelector((store) => store.card);
+  const { quantity } = useSelector((store) => store.cart);
   return (
     <nav>
       <div className="navbar">

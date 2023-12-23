@@ -3,12 +3,12 @@ import courseItems from "../courseItems";
 
 const initialState = {
   cartItems: courseItems,
-  quantity: 0,
+  quantity: 5,
   total: 0,
 };
-const cardReducer = createSlice({
-  name: "card",
+const cartReducer = createSlice({
+  name: "cart",
   initialState,
 });
 
-export default cardReducer.reducer;
+export default cartReducer.reducer;
