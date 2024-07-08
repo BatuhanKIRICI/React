@@ -1,16 +1,20 @@
 import './App.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { useState, useEffect } from 'react';
+
+
+
+function Heading() {
+  return <h1>This is an h1 heading</h1>
+}
 
 function App() {
 
-  function Header() {
-    return <h1>Header Section</h1>
-  }
-
   return (
-    <div><Header /></div>
+    <div>
+      This is the "First Component"
+      <div><Heading /></div>
+    </div>
   );
 }
 
