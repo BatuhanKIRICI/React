@@ -1,12 +1,8 @@
 import './App.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Heading from './Heading';
 
-
-
-function Heading() {
-  return <h1>This is an h1 heading</h1>
-}
 
 function App() {
 
