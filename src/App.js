@@ -3,55 +3,40 @@ import React from "react";
 import { useState } from "react";
 
 function App() {
-  const [form, setForm] = useState({
-    firstName: "Luke",
-    lastName: "Jones",
-    email: "lukeJones@sculpture.com",
-  });
-
   return (
-    <>
-      <label>
-        First name:
-        <input
-          value={form.firstName}
-          onChange={(e) => {
-            setForm({
-              ...form,
-              firstName: e.target.value,
-            });
-          }}
-        />
-      </label>
-      <label>
-        Last name:
-        <input
-          value={form.lastName}
-          onChange={(e) => {
-            setForm({
-              ...form,
-              lastName: e.target.value,
-            });
-          }}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          value={form.email}
-          onChange={(e) => {
-            setForm({
-              ...form,
-              email: e.target.value,
-            });
-          }}
-        />
-      </label>
-      <p>
-        {form.firstName} {form.lastName} ({form.email})
-      </p>
-    </>
+    <Main msg="I passed through the Header and the Wrapper and I reached the Button component" />
   );
+
+  function Main(props) {
+    return <Header msg={props.msg} />;
+  }
+
+  function Header(props) {
+    return (
+      <div style={{ border: "10px solid whitesmoke" }}>
+        <h1>Header here</h1>
+        <Wrapper msg={props.msg} />
+      </div>
+    );
+  }
+
+  function Wrapper(props) {
+    return (
+      <div style={{ border: "10px solid lightgray" }}>
+        <h2>Wrapper here</h2>
+        <Button msg={props.msg} />
+      </div>
+    );
+  }
+
+  function Button(props) {
+    return (
+      <div style={{ border: "20px solid orange" }}>
+        <h3>This is the Button component</h3>
+        <button onClick={() => alert(props.msg)}>Click me!</button>
+      </div>
+    );
+  }
 }
 
 export default App;
