@@ -1,64 +1,33 @@
 import "./App.css";
 import React from "react";
-import { useState, useRef } from "react";
-import "./App.css";
+
+const messages = [
+  "Learn React ⚛️",
+  "Apply for jobs 💼",
+  "Invest your new income 🤑",
+];
 
 function App() {
-  const inputRef = useRef(null);
-  const resultRef = useRef(null);
-  const [result, setResult] = useState(0);
-
-  function plus(e) {
-    e.preventDefault();
-    setResult((result) => result + Number(inputRef.current.value));
-  }
-
-  function minus(e) {
-    e.preventDefault();
-    setResult((result) => result - Number(inputRef.current.value));
-  }
-
-  function times(e) {
-    e.preventDefault();
-    setResult((result) => result * Number(inputRef.current.value));
-  }
-
-  function divide(e) {
-    e.preventDefault();
-    setResult((result) => result / Number(inputRef.current.value));
-  }
-
-  function resetInput(e) {
-    e.preventDefault();
-    inputRef.current.value = 0;
-  }
-
-  function resetResult(e) {
-    e.preventDefault();
-    setResult((result) => (result = 0));
-    inputRef.current.value = 0;
-  }
+  const step = 1;
 
   return (
-    <div className="App">
-      <div>
-        <h1>Simplest Working Calculator</h1>
+    <div className="steps">
+      <div className="numbers">
+        <div className={`${step >= 1 ? "active" : ""}`}>1</div>
+        <div className={`${step >= 2 ? "active" : ""}`}>2</div>
+        <div className={`${step >= 3 ? "active" : ""}`}>3</div>
       </div>
-      <form>
-        <p ref={resultRef}>{result}</p>
-        <input
-          pattern="[0-9]"
-          ref={inputRef}
-          type="number"
-          placeholder="Type a number"
-        />
-        <button onClick={plus}>add</button>
-        <button onClick={minus}>subtract</button>
-        <button onClick={times}>multiply</button>
-        <button onClick={divide}>divide</button>
-        <button onClick={resetInput}>resetInput</button>
-        <button onClick={resetResult}>resetResult</button>
-      </form>
+      <p className="message">
+        Step {step}: {messages[step - 1]}
+      </p>
+      <div className="buttons">
+        <button style={{ backgroundColor: "#7950f2", color: "#fff" }}>
+          Previous
+        </button>
+        <button style={{ backgroundColor: "#7950f2", color: "#fff" }}>
+          Next
+        </button>
+      </div>
     </div>
   );
 }
