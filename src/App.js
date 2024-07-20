@@ -1,51 +1,47 @@
 import "./App.css";
 import React, { useState } from "react";
 
-const messages = [
-  "Learn React ⚛️",
-  "Apply for jobs 💼",
-  "Invest your new income 🤑",
-];
-
 function App() {
-  const [step, setStep] = useState(1);
-  const [isOpen, setIsOpen] = useState(true);
+  return (
+    <div className="App">
+      <Counter />
+    </div>
+  );
+}
 
-  const handleNext = () => step < 3 && setStep((s) => s + 1);
-  const handlePrevious = () => step > 1 && setStep((s) => s - 1);
-  const handleClose = () => setIsOpen((is) => !is);
+function Counter() {
+  const [step, setStep] = useState(0);
+  const [count, setCount] = useState(0);
+  const date = new Date();
+  date.setDate(date.getDate() + count);
+
+  const handleStepPlus = () => setStep((s) => s + 1);
+  const handleStepMinus = () => setStep((s) => s - 1);
+  const handleCountPlus = () => setCount((c) => c + step);
+  const handleCountMinus = () => setCount((c) => c - step);
 
   return (
-    <div>
-      <button className="close" onClick={handleClose}>
-        &times;
-      </button>
-      {isOpen && (
-        <div className="steps">
-          <div className="numbers">
-            <div className={step >= 1 ? "active" : ""}>1</div>
-            <div className={step >= 2 ? "active" : ""}>2</div>
-            <div className={step >= 3 ? "active" : ""}>3</div>
-          </div>
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-          </p>
-          <div className="buttons">
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
-              onClick={handlePrevious}
-            >
-              Previous
-            </button>
-            <button
-              style={{ backgroundColor: "#7950f2", color: "#fff" }}
-              onClick={handleNext}
-            >
-              Next
-            </button>
-          </div>
-        </div>
-      )}
+    <div className="main">
+      <div className="step">
+        <button onClick={handleStepMinus}>-</button>
+        <span>{`Step : ${step}`}</span>
+        <button onClick={handleStepPlus}>+</button>
+      </div>
+      <div className="count">
+        <button onClick={handleCountMinus}>-</button>
+        <span>{`Count : ${count}`}</span>
+        <button onClick={handleCountPlus}>+</button>
+      </div>
+      <p>
+        <span>
+          {count === 0
+            ? "Today is "
+            : count !== 0
+            ? `${Math.abs(count)} days from today's date. `
+            : ""}
+        </span>
+        <span>{date.toDateString()}</span>
+      </p>
     </div>
   );
 }
