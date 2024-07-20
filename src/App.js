@@ -1,47 +1,34 @@
 import "./App.css";
-import React, { useState } from "react";
+import DessertsList from "./DessertsList";
+
+const desserts = [
+  {
+    name: "Chocolate Cake",
+    calories: 400,
+    createdAt: "2022-09-01",
+  },
+  {
+    name: "Ice Cream",
+    calories: 200,
+    createdAt: "2022-01-02",
+  },
+  {
+    name: "Tiramisu",
+    calories: 300,
+    createdAt: "2021-10-03",
+  },
+  {
+    name: "Cheesecake",
+    calories: 600,
+    createdAt: "2022-01-04",
+  },
+];
 
 function App() {
   return (
     <div className="App">
-      <Counter />
-    </div>
-  );
-}
-
-function Counter() {
-  const [step, setStep] = useState(0);
-  const [count, setCount] = useState(0);
-  const date = new Date();
-  date.setDate(date.getDate() + count);
-
-  const handleStepPlus = () => setStep((s) => s + 1);
-  const handleStepMinus = () => setStep((s) => s - 1);
-  const handleCountPlus = () => setCount((c) => c + step);
-  const handleCountMinus = () => setCount((c) => c - step);
-
-  return (
-    <div className="main">
-      <div className="step">
-        <button onClick={handleStepMinus}>-</button>
-        <span>{`Step : ${step}`}</span>
-        <button onClick={handleStepPlus}>+</button>
-      </div>
-      <div className="count">
-        <button onClick={handleCountMinus}>-</button>
-        <span>{`Count : ${count}`}</span>
-        <button onClick={handleCountPlus}>+</button>
-      </div>
-      <p>
-        <span>
-          {count === 0
-            ? "Today is "
-            : count !== 0
-            ? `${Math.abs(count)} days from today's date. `
-            : ""}
-        </span>
-        <span>{date.toDateString()}</span>
-      </p>
+      <h2>List of low calorie desserts:</h2>
+      <DessertsList data={desserts} />
     </div>
   );
 }
