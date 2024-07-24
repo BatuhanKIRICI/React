@@ -2,19 +2,27 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [toggle, setToggle] = useState(false);
+  const [btcData, setBtcData] = useState({});
 
-  const handleToggle = () => setToggle(!toggle);
+  const fetchData = () => {
+    fetch(`https://api.coindesk.com/v1/bpi/currentprice.json`)
+      .then((response) => response.json())
+      .then((jsonData) => setBtcData(jsonData.bpi.USD))
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
-    document.title = toggle ? "Welcome to React" : "Using useEffect";
-  }, [toggle]);
+    fetchData();
+  }, []);
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>Using the useEffect hook</h1>
-      <button onClick={handleToggle}>Toggle</button>
-      {toggle && <h2>Welcome to React</h2>}
-    </div>
+    <>
+      <h1>Current BTC/USD data</h1>
+      <p>Code: {btcData.code}</p>
+      <p>Symbol: {btcData.symbol}</p>
+      <p>Rate: {btcData.rate}</p>
+      <p>Description: {btcData.description}</p>
+      <p>Rate Float: {btcData.rate_float}</p>
+    </>
   );
 }
