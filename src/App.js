@@ -1,26 +1,18 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function App() {
-  const [user, setUser] = useState([]);
+  const formInputRef = useRef(null);
 
-  const fetchData = () => {
-    fetch("https://randomuser.me/api/?results=1").then((response) =>
-      response.json().then((data) => setUser(data))
-    );
+  const handleFocus = () => {
+    formInputRef.current.focus();
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  return Object.keys(user).length > 0 ? (
-    <div style={{ padding: "40px" }}>
-      <h1>Customer data</h1>
-      <h2>Name: {user.results[0].name.first}</h2>
-      <img src={user.results[0].picture.large} alt="" />
-    </div>
-  ) : (
-    <h1>Data pending...</h1>
+  return (
+    <>
+      <h1>Using useRef to access underlying DOM</h1>
+      <input ref={formInputRef} type="text" />
+      <button onClick={handleFocus}>Focus Input</button>
+    </>
   );
 }
